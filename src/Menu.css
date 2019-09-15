@@ -1,0 +1,59 @@
+.container-menu{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.877);
+	background: rgb(37, 37, 37);
+	padding: 25px;
+
+	max-width: 350px;
+}
+
+
+.container-select{
+	text-align: center;
+
+	
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.76);
+	background: rgb(61, 61, 61);
+	padding: 10px;
+}
+.container-select label{
+	display: inline-block;
+
+	margin: 10px 5px 10px 5px;
+	white-space: nowrap;
+	width: 100%;
+
+	color: white;
+	font-size: 18px;
+	font-weight: 500;
+}
+.container-select select{
+	margin-left: 5px;
+	font-size: 15px;
+}
+
+
+.botao-menu{
+	margin-top: 20px;
+}
+.botao-menu button{
+	font-size: 15px;
+	font-weight: bold;
+	padding: 5px 25px 5px 25px;
+
+	color: white;
+	background: black;
+	border: none;
+}
+.botao-menu button:hover{
+	font-size: 15px;
+	font-weight: bold;
+	padding: 5px 25px 5px 25px;
+
+	color: rgb(255, 255, 255);
+	background: rgb(12, 103, 189);
+	border: none;
+}

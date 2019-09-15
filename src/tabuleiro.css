@@ -1,0 +1,84 @@
+.tabuleiro .square{
+	font-weight: bold;
+	font-size: 20px;
+}
+.tabuleiro{
+	width: 400px;
+	height: 400px;
+}
+
+
+.square{
+	background: rgb(41, 41, 41);
+	border: none;
+
+	border-right: 2px solid;
+	border-bottom: 2px solid;
+	border-color: rgb(105, 105, 105);
+}
+
+.clicked{
+	background: rgb(199, 198, 198);
+	color: rgb(255, 255, 255);
+
+	border-color: rgb(153, 153, 153);
+	font-weight: bold;
+}
+
+
+.bomb{
+	background: rgb(175, 32, 32);
+}
+.color-0{
+	color: rgb(199, 198, 198);
+}
+.color-1{
+	color: rgb(25, 108, 233);
+}
+.color-2{
+	color: rgb(27, 204, 151);
+}
+.color-3{
+	color: rgb(0, 255, 106);
+}
+.color-4{
+	color:rgb(81, 165, 42);
+}
+.color-5{
+	color: rgb(136, 255, 0);
+}
+.color6{
+	color: rgb(238, 255, 0);
+}
+.color-7{
+	color: rgb(255, 166, 0);
+}
+.color-8{
+	color: red;
+}
+
+
+.container-botao{
+	text-align: center;
+	padding: 20px;
+}
+
+.botao{
+	font-size: 15px;
+	font-weight: bold;
+	padding: 5px 25px 5px 25px;
+	margin: 0 10px 0 10px;
+
+	color: white;
+	background: black;
+	border: none;
+}
+.botao:hover{
+	font-size: 15px;
+	font-weight: bold;
+	padding: 5px 25px 5px 25px;
+
+	color: rgb(255, 255, 255);
+	background: rgb(12, 103, 189);
+	border: none;
+}
