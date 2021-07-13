@@ -1,14 +1,17 @@
 import React from 'react';
 
 import { Container, LeftSide, RightSide } from './styles';
+
 import { useMinefield } from '../../hooks/minefield';
+import { TimerContextProvider } from '../../hooks/timer';
 
 import { ReactComponent as WhiteMineIcon } from '../../assets/white-mine.svg';
 import { ReactComponent as ResetIcon } from '../../assets/reset.svg';
-import { ReactComponent as ClockIcon } from '../../assets/clock.svg';
+
+import Timer from '../Timer';
 
 const Header: React.FC = () => {
-	const { timer, mines, difficulty, setDifficulty, resetGame } = useMinefield();
+	const { mines, difficulty, setDifficulty, resetGame } = useMinefield();
 
 	return (
 		<Container>
@@ -34,10 +37,9 @@ const Header: React.FC = () => {
 					<WhiteMineIcon />
 				</div>
 
-				<div>
-					<span>{timer}</span>
-					<ClockIcon />
-				</div>
+				<TimerContextProvider>
+					<Timer />
+				</TimerContextProvider>
 			</RightSide>
 		</Container>
 	);

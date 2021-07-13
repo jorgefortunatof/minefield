@@ -5,20 +5,22 @@ import React, {
 	useContext,
 	useCallback,
 } from 'react';
-import { generateBoard, minesAndBoardSize } from '../utils';
+
+import { generateBoard, paramsByDifficulty } from '../utils';
 
 type MinefieldContextData = {
 	board: number[];
 	toggledPositions: boolean[];
 	mines: number;
-	timer: number;
 	gameOver: boolean;
 	exploded: boolean;
 	difficulty: string;
+	timeToFinish: number;
 
 	toggleSquare: (index: number, value: number) => void;
 	setDifficulty: (difficulty: string) => void;
 	setGameOver: (gameOver: boolean) => void;
+	setExploded: (exploded: boolean) => void;
 	resetGame: () => void;
 };
 
@@ -27,8 +29,7 @@ const MinefieldContext = createContext<MinefieldContextData>(
 );
 
 export const MinefieldContextProvider: React.FC = ({ children }) => {
-	const [timer, setTimer] = useState(0);
-
+	const [timeToFinish, setTimeToFinish] = useState(0);
 	const [difficulty, setDifficulty] = useState('easy');
 	const [exploded, setExploded] = useState(false);
 	const [gameOver, setGameOver] = useState(false);
@@ -36,21 +37,6 @@ export const MinefieldContextProvider: React.FC = ({ children }) => {
 	const [mines, setMines] = useState<number>(0);
 	const [board, setBoard] = useState<number[]>([]);
 	const [toggledPositions, setToggledPositions] = useState<boolean[]>([]);
-
-	const startGame = useCallback(() => {
-		const [minesSize, boardSize] = minesAndBoardSize(difficulty);
-		const generatedBoard = generateBoard(minesSize, boardSize);
-
-		setToggledPositions(Array(boardSize).fill(false));
-		setBoard(generatedBoard);
-		setMines(minesSize);
-		setGameOver(false);
-		setExploded(false);
-	}, [difficulty]);
-
-	const resetGame = useCallback(() => {
-		startGame();
-	}, [startGame]);
 
 	const toggleSquare = useCallback(
 		(index: number, value: number) => {
@@ -74,6 +60,23 @@ export const MinefieldContextProvider: React.FC = ({ children }) => {
 		[toggledPositions, board, mines],
 	);
 
+	const startGame = useCallback(() => {
+		const [minesSize, boardSize, time] = paramsByDifficulty(difficulty);
+		const generatedBoard = generateBoard(minesSize, boardSize);
+
+		setToggledPositions(Array(boardSize).fill(false));
+		setBoard(generatedBoard);
+		setMines(minesSize);
+
+		setTimeToFinish(time);
+		setGameOver(false);
+		setExploded(false);
+	}, [difficulty]);
+
+	const resetGame = useCallback(() => {
+		startGame();
+	}, [startGame]);
+
 	useEffect(() => {
 		startGame();
 	}, [difficulty, startGame]);
@@ -83,15 +86,16 @@ export const MinefieldContextProvider: React.FC = ({ children }) => {
 			value={{
 				board,
 				mines,
-				timer,
 				difficulty,
 				gameOver,
 				exploded,
+				timeToFinish,
+				toggledPositions,
 				setDifficulty,
 				setGameOver,
+				setExploded,
 				resetGame,
 				toggleSquare,
-				toggledPositions,
 			}}
 		>
 			{children}

@@ -157,15 +157,26 @@ export function generateBoard(minesSize: number, boardSize: number): number[] {
 	return board;
 }
 
-export function minesAndBoardSize(difficulty: string): number[] {
+export function paramsByDifficulty(difficulty: string): number[] {
 	switch (difficulty) {
 		case 'easy':
-			return [5, 25];
+			return [5, 25, 120000];
 		case 'normal':
-			return [12, 49];
+			return [12, 49, 180000];
 		case 'hard':
-			return [24, 81];
+			return [24, 81, 180000];
 		default:
-			return [55, 121]; // impossible
+			return [55, 121, 120000];
 	}
+}
+
+export function formatTimer(milliseconds: number): string {
+	const seconds = milliseconds / 1000;
+	const minutes = Math.floor(seconds / 60);
+	const rest = Math.floor(seconds - minutes * 60);
+
+	const minutesFormatted = String(minutes).padStart(2, '0');
+	const restFormatted = String(rest).padStart(2, '0');
+
+	return `${minutesFormatted}:${restFormatted}`;
 }

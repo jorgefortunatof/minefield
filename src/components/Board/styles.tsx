@@ -15,6 +15,8 @@ export const Container = styled.div`
 
 	border-radius: 0.6rem;
 	background-color: var(--black);
+
+	overflow: hidden;
 `;
 
 type MinefieldProps = {
