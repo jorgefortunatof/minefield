@@ -1,6 +1,5 @@
-![screenshot.png](screenshot.png)
-
 # 💣 Minefield Game
+![screenshot.png](screenshot.png)
 
 This is a minefield game made with React.js, Typescript and Styled Components.
 It is hosted on Netlify, you can play it clicking [here](https://nostalgic-kilby-adecaa.netlify.app/).
