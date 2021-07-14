@@ -19,6 +19,7 @@ export const Container = styled.div`
 	overflow: hidden;
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type MinefieldProps = {
 	boardSize: number;
 };

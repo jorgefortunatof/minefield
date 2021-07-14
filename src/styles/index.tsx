@@ -2,7 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 	:root {
-		--background: #FD5757;
+		--primary: #FD5757;
+		--secondary: #007EC4;
 
 		--square-even: #595959;
 		--square-odd: #494949;

@@ -1,7 +1,5 @@
 /* eslint-disable no-param-reassign */
 
-// BOTTOM-LEFT
-
 function increasePositionsAround(position: number, board: number[]): void {
 	const lineSize = board.length ** 0.5;
 	const positions = {

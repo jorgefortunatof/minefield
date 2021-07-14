@@ -9,7 +9,7 @@ export const Container = styled.div`
 	justify-content: center;
 	align-items: center;
 
-	background-color: var(--background);
+	background-color: var(--primary);
 	background-image: url(${blueMine});
 	background-size: 4rem;
 `;
