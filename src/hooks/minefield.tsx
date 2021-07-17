@@ -13,6 +13,7 @@ type MinefieldContextData = {
 	toggledPositions: boolean[];
 	mines: number;
 	gameOver: boolean;
+	gameDidStart: boolean;
 	exploded: boolean;
 	difficulty: string;
 	timeToFinish: number;
@@ -33,6 +34,7 @@ export const MinefieldContextProvider: React.FC = ({ children }) => {
 	const [difficulty, setDifficulty] = useState('easy');
 	const [exploded, setExploded] = useState(false);
 	const [gameOver, setGameOver] = useState(false);
+	const [gameDidStart, setGameDidStart] = useState(false);
 
 	const [mines, setMines] = useState<number>(0);
 	const [board, setBoard] = useState<number[]>([]);
@@ -48,6 +50,8 @@ export const MinefieldContextProvider: React.FC = ({ children }) => {
 				board.length - mines
 			) {
 				setGameOver(true);
+			} else if (!gameDidStart) {
+				setGameDidStart(true);
 			}
 
 			if (value === -1) {
@@ -57,7 +61,7 @@ export const MinefieldContextProvider: React.FC = ({ children }) => {
 
 			setToggledPositions(updateToggledPositions);
 		},
-		[toggledPositions, board, mines],
+		[toggledPositions, board, mines, gameDidStart],
 	);
 
 	const startGame = useCallback(() => {
@@ -70,6 +74,7 @@ export const MinefieldContextProvider: React.FC = ({ children }) => {
 
 		setTimeToFinish(time);
 		setGameOver(false);
+		setGameDidStart(false);
 		setExploded(false);
 	}, [difficulty]);
 
@@ -88,6 +93,7 @@ export const MinefieldContextProvider: React.FC = ({ children }) => {
 				mines,
 				difficulty,
 				gameOver,
+				gameDidStart,
 				exploded,
 				timeToFinish,
 				toggledPositions,

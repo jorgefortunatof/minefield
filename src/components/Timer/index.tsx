@@ -6,8 +6,14 @@ import { formatTimer } from '../../utils';
 import { ReactComponent as ClockIcon } from '../../assets/clock.svg';
 
 const Timer: React.FC = () => {
-	const { setGameOver, setExploded, timeToFinish, board, gameOver } =
-		useMinefield();
+	const {
+		setGameOver,
+		setExploded,
+		timeToFinish,
+		board,
+		gameOver,
+		gameDidStart,
+	} = useMinefield();
 
 	const [time, setTime] = useState(0);
 	const [timeIsOver, setTimeIsOver] = useState(false);
@@ -15,29 +21,26 @@ const Timer: React.FC = () => {
 		{} as NodeJS.Timeout,
 	);
 
-	const startTimer = useCallback(
-		(initialTime: number) => {
-			clearInterval(timeInterval);
-			setTime(initialTime);
+	const startTimer = useCallback(() => {
+		clearInterval(timeInterval);
+		// setTime(initialTime);
 
-			const interval = setInterval(() => {
-				setTime((prev) => {
-					const decreasedTime = prev - 1000;
+		const interval = setInterval(() => {
+			setTime((prev) => {
+				const decreasedTime = prev - 1000;
 
-					if (decreasedTime < 0) {
-						clearInterval(timeInterval);
-						setTimeIsOver(true);
-						return 0;
-					}
+				if (decreasedTime < 0) {
+					clearInterval(timeInterval);
+					setTimeIsOver(true);
+					return 0;
+				}
 
-					return decreasedTime;
-				});
-			}, 1000);
+				return decreasedTime;
+			});
+		}, 1000);
 
-			setTimeInterval(interval);
-		},
-		[timeInterval],
-	);
+		setTimeInterval(interval);
+	}, [timeInterval]);
 
 	useEffect(() => {
 		if (timeIsOver) {
@@ -50,11 +53,20 @@ const Timer: React.FC = () => {
 
 	useEffect(() => {
 		if (timeToFinish) {
-			startTimer(timeToFinish);
+			clearInterval(timeInterval);
+			setTime(timeToFinish);
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [board]);
+
+	useEffect(() => {
+		if (gameDidStart) {
+			startTimer();
+		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [gameDidStart]);
 
 	useEffect(() => {
 		if (gameOver) {
