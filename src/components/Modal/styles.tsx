@@ -35,6 +35,7 @@ export const Card = styled.div`
 
 	width: 26rem;
 	padding: 2rem;
+	margin: 1rem;
 
 	background-color: var(--white);
 	border-radius: 0.6rem;

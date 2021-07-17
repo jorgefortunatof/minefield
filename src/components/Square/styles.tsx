@@ -15,7 +15,7 @@ export const Container = styled.button.attrs({
 	justify-content: center;
 	align-items: center;
 
-	font-size: 2.2rem;
+	font-size: 2em;
 	font-weight: bold;
 	color: transparent;
 	border: none;
@@ -66,4 +66,10 @@ export const Container = styled.button.attrs({
 						opacity: 1;
 					}
 			  `};
+
+	${({ boardSize }) =>
+		boardSize > 49 &&
+		css`
+			font-size: 1.2rem;
+		`};
 `;
